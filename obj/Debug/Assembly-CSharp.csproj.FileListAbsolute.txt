@@ -1,0 +1,11 @@
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\Assembly-CSharp.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\Assembly-CSharp.pdb
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\UnityEditor.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\UnityEngine.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\Mono.Cecil.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\nunit.framework.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\Unity.DataContract.dll
+A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.dll
+A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.pdb

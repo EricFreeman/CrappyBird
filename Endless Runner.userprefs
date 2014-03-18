@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerScript.cs">
+    <Files>
+      <File FileName="Assets\DirectorScript.cs" Line="21" Column="4" />
+      <File FileName="Assets\PlayerScript.cs" Line="18" Column="4" />
+      <File FileName="Assets\Resources\PipeScript.cs" Line="18" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
