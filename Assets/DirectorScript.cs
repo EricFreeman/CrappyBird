@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -21,7 +22,7 @@ public class DirectorScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		CreatePipe();
+        StartGame();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +35,12 @@ public class DirectorScript : MonoBehaviour {
 	        Destroy(PipeList[0]);
             PipeList.RemoveAt(0);
 	    }
+
+        var p = GameObject.Find("Player");
+        if (((PlayerScript)p.GetComponent("PlayerScript")).IsDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
+	    {
+	        StartGame();
+	    }
 	}
 	
 	void CreatePipe() {
@@ -41,4 +48,32 @@ public class DirectorScript : MonoBehaviour {
 		p.transform.position += new Vector3(10, Random.Range(-2.5f, 2.5f), 0);
 		PipeList.Add(p);	
 	}
+
+    public void Die()
+    {
+        Debug.Log("Dying");
+
+        foreach(var p in PipeList)
+        {
+            var s = (PipeScript)p.GetComponent("PipeScript");
+            s.IsStopped = true;
+        }
+    }
+
+    void StartGame()
+    {
+        Score = 0;
+        var p = GameObject.Find("Player");
+        p.transform.position = new Vector3(-5f, 1f, 0f);
+        p.rigidbody.velocity = Vector3.zero;
+        ((PlayerScript) p.GetComponent("PlayerScript")).IsDead = false;
+
+        while(PipeList.Count > 0)
+        {
+            Destroy(PipeList[0]);
+            PipeList.RemoveAt(0);
+        }
+
+        CreatePipe();
+    }
 }
