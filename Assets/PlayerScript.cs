@@ -25,4 +25,10 @@ public class PlayerScript : MonoBehaviour {
 
 	    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * 5);
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.collider.name);
+        DirectorScript.Score = 0;
+    }
 }
