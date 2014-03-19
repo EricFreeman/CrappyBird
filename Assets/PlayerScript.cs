@@ -9,12 +9,14 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
+        {
 			rigidbody.velocity = Vector3.zero;
 			rigidbody.AddForce(Vector3.up * JumpForce);
 
             var p = (GameObject)Instantiate(Resources.Load("Poop"));
 		    p.transform.position = transform.position + new Vector3(-.1f, -.1f, 0f);
+            p.rigidbody.AddForce(0f, -200f, 0f);
 		}
 
 	    var spriteRenderer = GetComponent("SpriteRenderer") as SpriteRenderer;

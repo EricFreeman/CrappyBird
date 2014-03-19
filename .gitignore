@@ -1,9 +1,33 @@
-src/**/obj/
-lib/**/obj/
-lib/Content\ Compiler/**/obj/
-src/**/bin/
-lib/**/bin/
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
 *.suo
-*.csproj.user
-*.vshost.exe.*
-
+*.sln
+*.user
+*.unityproj
+*.booproj
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db

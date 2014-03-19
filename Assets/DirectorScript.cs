@@ -6,6 +6,18 @@ public class DirectorScript : MonoBehaviour {
 	List<GameObject> PipeList = new List<GameObject>();
 	
 	public int Spacing = 6;
+
+    private static int _score = 0;
+
+    public static int Score
+    {
+        get { return _score; }
+        set
+        {
+            _score = value;
+            GameObject.Find("ScoreText").guiText.text = "Score: " + _score;
+        }
+    }
 	
 	// Use this for initialization
 	void Start () {
