@@ -24,6 +24,8 @@ public class PoopScript : MonoBehaviour
 
             audio.Play();
         }
+
+        ((SpriteRenderer) GetComponent("SpriteRenderer")).sprite = FlatPoop;
     }
 
 	// Use this for initialization

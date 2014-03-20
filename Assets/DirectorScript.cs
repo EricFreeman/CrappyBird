@@ -62,6 +62,9 @@ public class DirectorScript : MonoBehaviour {
         {
             p.IsStopped = true;
         }
+
+        var grass = GameObject.Find("Floor");
+        ((GrassScript)grass.GetComponent("GrassScript")).IsStopped = true;
     }
 
     void StartGame()
@@ -70,7 +73,10 @@ public class DirectorScript : MonoBehaviour {
         var p = GameObject.Find("Player");
         p.transform.position = new Vector3(-5f, 1f, 0f);
         p.rigidbody.velocity = Vector3.zero;
-        ((PlayerScript) p.GetComponent("PlayerScript")).IsDead = false;
+        ((PlayerScript)p.GetComponent("PlayerScript")).IsDead = false;
+
+        var grass = GameObject.Find("Floor");
+        ((GrassScript)grass.GetComponent("GrassScript")).IsStopped = false;
 
         while(PipeList.Count > 0)
         {
