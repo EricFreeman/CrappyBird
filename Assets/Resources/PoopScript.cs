@@ -21,12 +21,8 @@ public class PoopScript : MonoBehaviour
             var pipe = collision.collider.transform.parent.FindChild("BottomPipeSprite");
             if (pipe != null)
                 ((SpriteRenderer) pipe.GetComponent("SpriteRenderer")).sprite = PoopedTex;
-        }
 
-        if (!_texChanged)
-        {
-            _texChanged = true;
-            ((SpriteRenderer) gameObject.GetComponent("SpriteRenderer")).sprite = FlatPoop;
+            audio.Play();
         }
     }
 

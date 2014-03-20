@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour {
             var p = (GameObject)Instantiate(Resources.Load("Poop"));
 		    p.transform.position = transform.position + new Vector3(-.1f, -.1f, 0f);
             p.rigidbody.AddForce(0f, -200f, 0f);
+
+            audio.Play();
 		}
 
 	    var spriteRenderer = GetComponent("SpriteRenderer") as SpriteRenderer;
