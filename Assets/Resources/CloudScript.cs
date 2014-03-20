@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 public class CloudScript : MonoBehaviour
@@ -15,8 +14,8 @@ public class CloudScript : MonoBehaviour
 	    for (int i = 0; i < CloudCount; i++)
 	    {
 	        var cloud = new GameObject();
-	        cloud.AddComponent("SpriteRenderer");
-	        var s = (SpriteRenderer)cloud.GetComponent("SpriteRenderer");
+	        cloud.AddComponent<SpriteRenderer>();
+	        var s = cloud.GetComponent<SpriteRenderer>();
 	        s.sprite = CloudTexture;
 
             s.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(0, 6), 1f);

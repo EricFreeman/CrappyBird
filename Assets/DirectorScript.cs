@@ -1,9 +1,9 @@
-using System.Linq;
+
 using UnityEngine;
 using System.Collections.Generic;
 
-public class DirectorScript : MonoBehaviour {
-	
+public class DirectorScript : MonoBehaviour
+{
 	List<GameObject> PipeList = new List<GameObject>();
 	
 	public int Spacing = 6;
@@ -36,7 +36,7 @@ public class DirectorScript : MonoBehaviour {
 	    }
 
         var p = GameObject.Find("Player");
-        if (((PlayerScript)p.GetComponent("PlayerScript")).IsDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
+        if (p.GetComponent<PlayerScript>().IsDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
 	    {
 	        StartGame();
 	    }
@@ -54,17 +54,17 @@ public class DirectorScript : MonoBehaviour {
 
         foreach(var p in PipeList)
         {
-            var s = (PipeScript)p.GetComponent("PipeScript");
+            var s = p.GetComponent<PipeScript>();
             s.IsStopped = true;
         }
 
-        foreach (var p in GameObject.FindObjectsOfType<PoopScript>())
+        foreach (var p in FindObjectsOfType<PoopScript>())
         {
             p.IsStopped = true;
         }
 
         var grass = GameObject.Find("Floor");
-        ((GrassScript)grass.GetComponent("GrassScript")).IsStopped = true;
+        grass.GetComponent<GrassScript>().IsStopped = true;
     }
 
     void StartGame()
@@ -73,10 +73,10 @@ public class DirectorScript : MonoBehaviour {
         var p = GameObject.Find("Player");
         p.transform.position = new Vector3(-5f, 1f, 0f);
         p.rigidbody.velocity = Vector3.zero;
-        ((PlayerScript)p.GetComponent("PlayerScript")).IsDead = false;
+        p.GetComponent<PlayerScript>().IsDead = false;
 
         var grass = GameObject.Find("Floor");
-        ((GrassScript)grass.GetComponent("GrassScript")).IsStopped = false;
+        grass.GetComponent<GrassScript>().IsStopped = false;
 
         while(PipeList.Count > 0)
         {

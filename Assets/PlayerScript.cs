@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour {
             audio.Play();
 		}
 
-	    var spriteRenderer = GetComponent("SpriteRenderer") as SpriteRenderer;
+	    var spriteRenderer = GetComponent<SpriteRenderer>();
 	    if (spriteRenderer != null)
 	        spriteRenderer.sprite = rigidbody.velocity.y > 0 ? DownTex : UpTex;
 	}
@@ -40,9 +40,9 @@ public class PlayerScript : MonoBehaviour {
         if (IsDead) return;
 
         var d = GameObject.Find("Director");
-        ((DirectorScript)d.GetComponent("DirectorScript")).Die();
+        d.GetComponent<DirectorScript>().Die();
 
-        var spriteRenderer = GetComponent("SpriteRenderer") as SpriteRenderer;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
             spriteRenderer.sprite = DeadTex;
 
