@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 3ed3bb623436bc3469cfd380ed90285e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - GuiScore: {instanceID: 0}
+  - PoopedTex: {fileID: 21300000, guid: 46a6261d3500b814fb818a94a51ac400, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

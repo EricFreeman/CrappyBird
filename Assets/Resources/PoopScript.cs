@@ -4,6 +4,12 @@ public class PoopScript : MonoBehaviour
 {
     public GUIText GuiScore;
 
+    public bool IsStopped = false;
+    public Sprite PoopedTex;
+    public Sprite FlatPoop;
+
+    private bool _texChanged = false;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name == "PoopCollider")
@@ -11,6 +17,16 @@ public class PoopScript : MonoBehaviour
             rigidbody.velocity = Vector3.zero;
             DirectorScript.Score++;
             Destroy(collision.collider);
+
+            var pipe = collision.collider.transform.parent.FindChild("BottomPipeSprite");
+            if (pipe != null)
+                ((SpriteRenderer) pipe.GetComponent("SpriteRenderer")).sprite = PoopedTex;
+        }
+
+        if (!_texChanged)
+        {
+            _texChanged = true;
+            ((SpriteRenderer) gameObject.GetComponent("SpriteRenderer")).sprite = FlatPoop;
         }
     }
 
@@ -22,6 +38,8 @@ public class PoopScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	    if (IsStopped) return;
+
 	    transform.position += Vector3.left * .1f;
 
         if (transform.position.x < -10)

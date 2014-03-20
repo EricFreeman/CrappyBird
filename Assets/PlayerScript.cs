@@ -35,6 +35,8 @@ public class PlayerScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (IsDead) return;
+
         var d = GameObject.Find("Director");
         ((DirectorScript)d.GetComponent("DirectorScript")).Die();
 

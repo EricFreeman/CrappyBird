@@ -9,7 +9,6 @@ public class DirectorScript : MonoBehaviour {
 	public int Spacing = 6;
 
     private static int _score = 0;
-
     public static int Score
     {
         get { return _score; }
@@ -51,12 +50,17 @@ public class DirectorScript : MonoBehaviour {
 
     public void Die()
     {
-        Debug.Log("Dying");
+        audio.Play();
 
         foreach(var p in PipeList)
         {
             var s = (PipeScript)p.GetComponent("PipeScript");
             s.IsStopped = true;
+        }
+
+        foreach (var p in GameObject.FindObjectsOfType<PoopScript>())
+        {
+            p.IsStopped = true;
         }
     }
 
@@ -72,6 +76,12 @@ public class DirectorScript : MonoBehaviour {
         {
             Destroy(PipeList[0]);
             PipeList.RemoveAt(0);
+        }
+
+        foreach (var poo in FindObjectsOfType<PoopScript>())
+        {
+            Debug.Log(poo);
+            Destroy(poo.gameObject);
         }
 
         CreatePipe();
