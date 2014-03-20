@@ -1,9 +1,10 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 
 public class DirectorScript : MonoBehaviour
 {
+    public static bool IsPlayerDead = false;
+
 	List<GameObject> PipeList = new List<GameObject>();
 	
 	public int Spacing = 6;
@@ -35,8 +36,7 @@ public class DirectorScript : MonoBehaviour
             PipeList.RemoveAt(0);
 	    }
 
-        var p = GameObject.Find("Player");
-        if (p.GetComponent<PlayerScript>().IsDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
+        if (IsPlayerDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
 	    {
 	        StartGame();
 	    }
@@ -51,20 +51,7 @@ public class DirectorScript : MonoBehaviour
     public void Die()
     {
         audio.Play();
-
-        foreach(var p in PipeList)
-        {
-            var s = p.GetComponent<PipeScript>();
-            s.IsStopped = true;
-        }
-
-        foreach (var p in FindObjectsOfType<PoopScript>())
-        {
-            p.IsStopped = true;
-        }
-
-        var grass = GameObject.Find("Floor");
-        grass.GetComponent<GrassScript>().IsStopped = true;
+        IsPlayerDead = true;
     }
 
     void StartGame()
@@ -73,10 +60,7 @@ public class DirectorScript : MonoBehaviour
         var p = GameObject.Find("Player");
         p.transform.position = new Vector3(-5f, 1f, 0f);
         p.rigidbody.velocity = Vector3.zero;
-        p.GetComponent<PlayerScript>().IsDead = false;
-
-        var grass = GameObject.Find("Floor");
-        grass.GetComponent<GrassScript>().IsStopped = false;
+        IsPlayerDead = false;
 
         while(PipeList.Count > 0)
         {
@@ -86,7 +70,6 @@ public class DirectorScript : MonoBehaviour
 
         foreach (var poo in FindObjectsOfType<PoopScript>())
         {
-            Debug.Log(poo);
             Destroy(poo.gameObject);
         }
 

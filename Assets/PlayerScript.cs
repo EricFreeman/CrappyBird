@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour {
     public Sprite DownTex;
     public Sprite DeadTex;
 
-    public bool IsDead = false;
     public bool IsPlaying = true;
 	
 	// Update is called once per frame
@@ -16,7 +15,7 @@ public class PlayerScript : MonoBehaviour {
 	{
 	    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * 5);
 
-	    if (IsDead || !IsPlaying) return;
+	    if (DirectorScript.IsPlayerDead || !IsPlaying) return;
 
         if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -37,7 +36,7 @@ public class PlayerScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsDead) return;
+        if (DirectorScript.IsPlayerDead) return;
 
         var d = GameObject.Find("Director");
         d.GetComponent<DirectorScript>().Die();
@@ -46,7 +45,6 @@ public class PlayerScript : MonoBehaviour {
         if (spriteRenderer != null)
             spriteRenderer.sprite = DeadTex;
 
-        IsDead = true;
         rigidbody.AddForce(0, -50f, 0);
     }
 }

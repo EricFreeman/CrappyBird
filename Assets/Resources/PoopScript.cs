@@ -4,7 +4,6 @@ public class PoopScript : MonoBehaviour
 {
     public GUIText GuiScore;
 
-    public bool IsStopped = false;
     public Sprite PoopedTex;
     public Sprite FlatPoop;
 
@@ -36,7 +35,7 @@ public class PoopScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (IsStopped) return;
+	    if (DirectorScript.IsPlayerDead) return;
 
 	    transform.position += Vector3.left * .1f;
 

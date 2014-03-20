@@ -3,7 +3,6 @@ using UnityEngine;
 public class PipeScript : MonoBehaviour {
 	
 	public float MoveSpeed = .1f;
-    public bool IsStopped = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -13,7 +12,7 @@ public class PipeScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (IsStopped) return;
+	    if (DirectorScript.IsPlayerDead) return;
 
 		transform.position += Vector3.left * MoveSpeed;
 	}

@@ -4,8 +4,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-vs", "Assembly-CSharp-vs.csproj", "{AFCE75DE-90F7-8E9A-C530-ECF8FB4308AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Util", "..\Unity.Util\Unity.Util.csproj", "{B7448F0B-9D62-412A-9B4A-048D98AB3F02}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,10 +14,6 @@ Global
 		{AFCE75DE-90F7-8E9A-C530-ECF8FB4308AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFCE75DE-90F7-8E9A-C530-ECF8FB4308AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFCE75DE-90F7-8E9A-C530-ECF8FB4308AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7448F0B-9D62-412A-9B4A-048D98AB3F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7448F0B-9D62-412A-9B4A-048D98AB3F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7448F0B-9D62-412A-9B4A-048D98AB3F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7448F0B-9D62-412A-9B4A-048D98AB3F02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
