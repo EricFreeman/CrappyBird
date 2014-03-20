@@ -1,9 +1,12 @@
+using Assets;
 using UnityEngine;
 using System.Collections.Generic;
 
 public class DirectorScript : MonoBehaviour
 {
     public static bool IsPlayerDead = false;
+    public static float MoveSpeed = .1f;
+    public static Vector3 MoveVector = Vector3.left*MoveSpeed;
 
 	List<GameObject> PipeList = new List<GameObject>();
 	
@@ -27,19 +30,17 @@ public class DirectorScript : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if(PipeList[PipeList.Count - 1].transform.position.x < (10 - Spacing)) {
+		if(PipeList[PipeList.Count - 1].transform.position.x < (10 - Spacing))
 			CreatePipe();
-		}
+
 	    if (PipeList[0].transform.position.x < -10)
 	    {
 	        Destroy(PipeList[0]);
             PipeList.RemoveAt(0);
 	    }
 
-        if (IsPlayerDead && (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)))
-	    {
+        if (IsPlayerDead && InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
 	        StartGame();
-	    }
 	}
 	
 	void CreatePipe() {
@@ -69,9 +70,7 @@ public class DirectorScript : MonoBehaviour
         }
 
         foreach (var poo in FindObjectsOfType<PoopScript>())
-        {
             Destroy(poo.gameObject);
-        }
 
         CreatePipe();
     }

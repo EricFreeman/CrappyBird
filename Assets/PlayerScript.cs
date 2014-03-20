@@ -1,3 +1,4 @@
+using Assets;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
@@ -17,7 +18,7 @@ public class PlayerScript : MonoBehaviour {
 
 	    if (DirectorScript.IsPlayerDead || !IsPlaying) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if (InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
         {
 			rigidbody.velocity = Vector3.zero;
 			rigidbody.AddForce(Vector3.up * JumpForce);

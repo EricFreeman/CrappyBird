@@ -37,7 +37,7 @@ public class PoopScript : MonoBehaviour
 	{
 	    if (DirectorScript.IsPlayerDead) return;
 
-	    transform.position += Vector3.left * .1f;
+	    transform.position += DirectorScript.MoveVector;
 
         if (transform.position.x < -10)
             Destroy (gameObject);

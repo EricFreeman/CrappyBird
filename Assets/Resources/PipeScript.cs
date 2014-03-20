@@ -14,6 +14,6 @@ public class PipeScript : MonoBehaviour {
 	{
 	    if (DirectorScript.IsPlayerDead) return;
 
-		transform.position += Vector3.left * MoveSpeed;
+		transform.position += DirectorScript.MoveVector;
 	}
 }

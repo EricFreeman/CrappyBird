@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GrassScript : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class GrassScript : MonoBehaviour
 	{
 	    if (DirectorScript.IsPlayerDead) return;
 
-	    transform.position = new Vector3(transform.position.x-.1f, -4f, .5f);
+	    transform.position += DirectorScript.MoveVector;
 
         if(transform.position.x < -10)
             transform.position = new Vector3(10f, -4f, .5f);
