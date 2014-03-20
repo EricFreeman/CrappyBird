@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\DirectorScript.cs" />
      <Compile Include="Assets\PlayerScript.cs" />
+     <Compile Include="Assets\Resources\CloudScript.cs" />
      <Compile Include="Assets\Resources\GrassScript.cs" />
      <Compile Include="Assets\Resources\PipeScript.cs" />
      <Compile Include="Assets\Resources\PoopScript.cs" />
