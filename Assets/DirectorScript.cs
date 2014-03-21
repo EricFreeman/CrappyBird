@@ -48,6 +48,7 @@ public class DirectorScript : MonoBehaviour
 	        {
 	            IsGameStarted = true;
 	            GameObject.Find("Player").GetComponent<PlayerScript>().Jump();
+                ShowTapMessage(false);
 	        }
 	    }
 	}
@@ -62,6 +63,7 @@ public class DirectorScript : MonoBehaviour
     {
         audio.Play();
         IsPlayerDead = true;
+        ShowTapMessage(true);
     }
 
     void StartGame()
@@ -81,5 +83,10 @@ public class DirectorScript : MonoBehaviour
             Destroy(poo.gameObject);
 
         CreatePipe();
+    }
+
+    private static void ShowTapMessage(bool show)
+    {
+        GameObject.Find("TapToStart").guiText.enabled = show;
     }
 }
