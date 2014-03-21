@@ -25,7 +25,7 @@ namespace Assets.Resources
             var s = cloudObj.GameObject.GetComponent<SpriteRenderer>();
             s.sprite = sprite;
 
-            s.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(minHeight, maxHeight), 1f);
+            s.transform.position = new Vector3(Random.Range(-10, 10), Random.Range(minHeight, maxHeight), z);
             s.transform.localScale = new Vector3(Random.Range(minScale, 1f), Random.Range(minScale, 1f), Random.Range(minScale, 1f));
 
             cloudObj.MoveSpeed = Random.Range(minSpeed, maxSpeed);
@@ -39,7 +39,7 @@ namespace Assets.Resources
 
            if (GameObject.transform.position.x < -11.5)
             {
-                GameObject.transform.position = new Vector3(Random.Range(10.5f, 12), Random.Range(MinHeight, MaxHeight), 1f);
+                GameObject.transform.position = new Vector3(Random.Range(10.5f, 12), Random.Range(MinHeight, MaxHeight), _z);
                 GameObject.transform.localScale = new Vector3(Random.Range(MinScale, 1f), Random.Range(MinScale, 1f), Random.Range(MinScale, 1f));
                 MoveSpeed = Random.Range(.01f, .03f);
             }

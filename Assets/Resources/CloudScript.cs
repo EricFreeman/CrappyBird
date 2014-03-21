@@ -21,7 +21,7 @@ public class CloudScript : MonoBehaviour
 
 	    for (int i = 0; i < BuildingCount; i++)
 	    {
-	        _objs.Add(BackgroundObject.Create(BuildingTexture, -.85f, -.85f, .005f, .01f, .7f));
+	        _objs.Add(BackgroundObject.Create(BuildingTexture, -.85f, -.85f, .005f, .01f, .8f));
 	    }
 	}
 	
