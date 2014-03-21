@@ -4,7 +4,6 @@ public class PoopScript : MonoBehaviour
 {
     public GUIText GuiScore;
 
-    public bool IsStopped = false;
     public Sprite PoopedTex;
     public Sprite FlatPoop;
 
@@ -20,12 +19,12 @@ public class PoopScript : MonoBehaviour
 
             var pipe = collision.collider.transform.parent.FindChild("BottomPipeSprite");
             if (pipe != null)
-                ((SpriteRenderer) pipe.GetComponent("SpriteRenderer")).sprite = PoopedTex;
+                pipe.GetComponent<SpriteRenderer>().sprite = PoopedTex;
 
             audio.Play();
         }
 
-        ((SpriteRenderer) GetComponent("SpriteRenderer")).sprite = FlatPoop;
+        GetComponent<SpriteRenderer>().sprite = FlatPoop;
     }
 
 	// Use this for initialization
@@ -36,9 +35,9 @@ public class PoopScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (IsStopped) return;
+	    if (DirectorScript.IsPlayerDead) return;
 
-	    transform.position += Vector3.left * .1f;
+	    transform.position += DirectorScript.MoveVector;
 
         if (transform.position.x < -10)
             Destroy (gameObject);

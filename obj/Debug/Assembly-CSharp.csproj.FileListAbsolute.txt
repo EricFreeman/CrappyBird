@@ -9,3 +9,6 @@ A:\Users\Eric\Documents\Endless Runner\Temp\bin\Debug\ICSharpCode.NRefactory.dll
 A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.dll
 A:\Users\Eric\Documents\Endless Runner\obj\Debug\Assembly-CSharp.pdb
+C:\home\play\CrappyBird\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\home\play\CrappyBird\obj\Debug\Assembly-CSharp.dll
+C:\home\play\CrappyBird\obj\Debug\Assembly-CSharp.pdb
