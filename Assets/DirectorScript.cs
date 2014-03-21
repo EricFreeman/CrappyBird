@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 public class DirectorScript : MonoBehaviour
 {
+    public static bool IsGameStarted = false;
     public static bool IsPlayerDead = false;
     public static float MoveSpeed = .1f;
-    public static Vector3 MoveVector = Vector3.left*MoveSpeed;
+    public static Vector3 MoveVector = Vector3.left * MoveSpeed;
 
-	List<GameObject> PipeList = new List<GameObject>();
-	
-	public int Spacing = 6;
+    List<GameObject> PipeList = new List<GameObject>();
+
+    public int Spacing = 6;
 
     private static int _score = 0;
     public static int Score
@@ -28,37 +29,50 @@ public class DirectorScript : MonoBehaviour
     {
         set { GameObject.Find("HighScoreText").guiText.text = "High Score: " + value; }
     }
-	
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start()
+    {
         StartGame();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(PipeList[PipeList.Count - 1].transform.position.x < (10 - Spacing))
-			CreatePipe();
+    }
 
-	    if (PipeList[0].transform.position.x < -10)
-	    {
-	        Destroy(PipeList[0]);
+    // Update is called once per frame
+    void Update()
+    {
+        if (PipeList[PipeList.Count - 1].transform.position.x < (10 - Spacing))
+            CreatePipe();
+
+        if (PipeList[0].transform.position.x < -10)
+        {
+            Destroy(PipeList[0]);
             PipeList.RemoveAt(0);
-	    }
+        }
 
-        if (IsPlayerDead && InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
-	        StartGame();
-	}
-	
-	void CreatePipe() {
-		var p = (GameObject)Instantiate(Resources.Load ("Pipe"));
-		p.transform.position += new Vector3(10, Random.Range(-2.5f, 2.5f), 0);
-		PipeList.Add(p);	
-	}
+        if (InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
+        {
+            if (IsPlayerDead)
+                StartGame();
+            else if (!IsGameStarted)
+            {
+                IsGameStarted = true;
+                GameObject.Find("Player").GetComponent<PlayerScript>().Jump();
+                ShowTapMessage(false);
+            }
+        }
+    }
+
+    void CreatePipe()
+    {
+        var p = (GameObject)Instantiate(Resources.Load("Pipe"));
+        p.transform.position += new Vector3(10, Random.Range(-2.5f, 2.5f), 0);
+        PipeList.Add(p);
+    }
 
     public void Die()
     {
         audio.Play();
         IsPlayerDead = true;
+        ShowTapMessage(true);
     }
 
     private static void SetHighScore()
@@ -77,12 +91,11 @@ public class DirectorScript : MonoBehaviour
     void StartGame()
     {
         Score = 0;
-        var p = GameObject.Find("Player");
-        p.transform.position = new Vector3(-5f, 1f, 0f);
-        p.rigidbody.velocity = Vector3.zero;
+        GameObject.Find("Player").GetComponent<PlayerScript>().ResetPlayer();
         IsPlayerDead = false;
+        IsGameStarted = false;
 
-        while(PipeList.Count > 0)
+        while (PipeList.Count > 0)
         {
             Destroy(PipeList[0]);
             PipeList.RemoveAt(0);
@@ -92,5 +105,10 @@ public class DirectorScript : MonoBehaviour
             Destroy(poo.gameObject);
 
         CreatePipe();
+    }
+
+    private static void ShowTapMessage(bool show)
+    {
+        GameObject.Find("TapToStart").guiText.enabled = show;
     }
 }

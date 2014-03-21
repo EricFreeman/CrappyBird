@@ -12,7 +12,7 @@ public class PipeScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (DirectorScript.IsPlayerDead) return;
+        if (DirectorScript.IsPlayerDead || !DirectorScript.IsGameStarted) return;
 
 		transform.position += DirectorScript.MoveVector;
 	}
