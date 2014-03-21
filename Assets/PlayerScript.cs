@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-
     public float JumpForce = 300f;
 
     public Sprite UpTex;
     public Sprite DownTex;
     public Sprite DeadTex;
-
-    public bool IsPlaying = true;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +20,7 @@ public class PlayerScript : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * 5);
 
-        if (DirectorScript.IsPlayerDead || !IsPlaying) return;
+        if (DirectorScript.IsPlayerDead) return;
 
         if (InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
             Jump();
@@ -41,9 +38,7 @@ public class PlayerScript : MonoBehaviour
 
     private void SetTexture()
     {
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-            spriteRenderer.sprite = rigidbody.velocity.y > 0 ? DownTex : UpTex;
+        GetComponent<SpriteRenderer>().sprite = rigidbody.velocity.y > 0 ? DownTex : UpTex;
     }
 
     public void Jump()
@@ -65,10 +60,7 @@ public class PlayerScript : MonoBehaviour
         var d = GameObject.Find("Director");
         d.GetComponent<DirectorScript>().Die();
 
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-            spriteRenderer.sprite = DeadTex;
-
+        GetComponent<SpriteRenderer>().sprite = DeadTex;
         rigidbody.AddForce(0, -50f, 0);
     }
 }
