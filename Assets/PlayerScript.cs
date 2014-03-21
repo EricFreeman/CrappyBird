@@ -14,26 +14,48 @@ public class PlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+	    if (!DirectorScript.IsGameStarted)
+	    {
+	        ResetPlayer();
+	        return;
+	    }
+
 	    transform.eulerAngles = new Vector3(0, 0, rigidbody.velocity.y * 5);
 
 	    if (DirectorScript.IsPlayerDead || !IsPlaying) return;
 
         if (InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
-        {
-			rigidbody.velocity = Vector3.zero;
-			rigidbody.AddForce(Vector3.up * JumpForce);
+			Jump();
 
-            var p = (GameObject)Instantiate(Resources.Load("Poop"));
-		    p.transform.position = transform.position + new Vector3(-.1f, -.1f, 0f);
-            p.rigidbody.AddForce(0f, -200f, 0f);
-
-            audio.Play();
-		}
-
-	    var spriteRenderer = GetComponent<SpriteRenderer>();
-	    if (spriteRenderer != null)
-	        spriteRenderer.sprite = rigidbody.velocity.y > 0 ? DownTex : UpTex;
+	    SetTexture();
 	}
+
+    public void ResetPlayer()
+    {
+        transform.position = new Vector3(-5, 1, 0);
+        transform.rigidbody.velocity = Vector3.zero;
+        transform.eulerAngles = Vector3.zero;
+        SetTexture();
+    }
+
+    private void SetTexture()
+    {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = rigidbody.velocity.y > 0 ? DownTex : UpTex;
+    }
+
+    public void Jump()
+    {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(Vector3.up*JumpForce);
+
+        var p = (GameObject) Instantiate(Resources.Load("Poop"));
+        p.transform.position = transform.position + new Vector3(-.1f, -.1f, 0f);
+        p.rigidbody.AddForce(0f, -200f, 0f);
+
+        audio.Play();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

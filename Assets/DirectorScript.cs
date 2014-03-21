@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class DirectorScript : MonoBehaviour
 {
+    public static bool IsGameStarted = false;
     public static bool IsPlayerDead = false;
     public static float MoveSpeed = .1f;
     public static Vector3 MoveVector = Vector3.left*MoveSpeed;
@@ -39,8 +40,16 @@ public class DirectorScript : MonoBehaviour
             PipeList.RemoveAt(0);
 	    }
 
-        if (IsPlayerDead && InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
-	        StartGame();
+	    if (InputHelpers.IsKeyDownOrTouch(KeyCode.Space))
+	    {
+	        if (IsPlayerDead)
+	            StartGame();
+	        else if (!IsGameStarted)
+	        {
+	            IsGameStarted = true;
+	            GameObject.Find("Player").GetComponent<PlayerScript>().Jump();
+	        }
+	    }
 	}
 	
 	void CreatePipe() {
@@ -58,10 +67,9 @@ public class DirectorScript : MonoBehaviour
     void StartGame()
     {
         Score = 0;
-        var p = GameObject.Find("Player");
-        p.transform.position = new Vector3(-5f, 1f, 0f);
-        p.rigidbody.velocity = Vector3.zero;
+        GameObject.Find("Player").GetComponent<PlayerScript>().ResetPlayer();
         IsPlayerDead = false;
+        IsGameStarted = false;
 
         while(PipeList.Count > 0)
         {
