@@ -20,7 +20,13 @@ public class DirectorScript : MonoBehaviour
         {
             _score = value;
             GameObject.Find("ScoreText").guiText.text = "Score: " + _score;
+            SetHighScore();
         }
+    }
+
+    public static int HighScore
+    {
+        set { GameObject.Find("HighScoreText").guiText.text = "High Score: " + value; }
     }
 	
 	// Use this for initialization
@@ -53,6 +59,19 @@ public class DirectorScript : MonoBehaviour
     {
         audio.Play();
         IsPlayerDead = true;
+    }
+
+    private static void SetHighScore()
+    {
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            if (PlayerPrefs.GetInt("HighScore") < Score)
+                PlayerPrefs.SetInt("HighScore", Score);
+        }
+        else
+            PlayerPrefs.SetInt("HighScore", Score);
+
+        HighScore = PlayerPrefs.GetInt("HighScore");
     }
 
     void StartGame()
